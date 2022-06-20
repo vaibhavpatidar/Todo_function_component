@@ -209,3 +209,7 @@ body {
     border-radius: 5px;
     border: 1px solid lightgray;
   }
+
+  button{
+    cursor: pointer;
+  }

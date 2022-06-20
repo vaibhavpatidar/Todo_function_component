@@ -22,7 +22,7 @@ const Display = ({list, selectdone,itemdel}) => {
                     </tr>
                    
                     {items.map((list, index) => {
-                        return <tr className={list.category.includes(search) > 0 ? "itemsstyle":"itemsstyle try"} >
+                        return <tr className={list.category.toLowerCase().includes(search.toLowerCase()) > 0 ? "itemsstyle":"itemsstyle try"} >
                             <td className={list.done > 0 ? "todoitem done" : "todoitem"} onClick={(event) => { selectdone(index) }}>{list.item}</td>
                             <td>{list.category}</td>
                             <td><button className="sty" onClick={(event) => { event.stopPropagation(); itemdel(index) }}><FaTrashAlt /></button></td>

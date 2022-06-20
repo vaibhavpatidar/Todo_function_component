@@ -71,16 +71,26 @@ const Todo = () => {
 
    function clearTodo(){
       setTodo([])
+
+      update(ref(db, '/users/' + name + '/list'), {
+         todo
+      });
    }
 
    function reset(){
       const dbRef = ref(getDatabase());
       get(child(dbRef, `/users/` + name)).then((snapshot) => {
             let pass=snapshot.val().list
-             let a=Object.keys(pass)[0]
-            console.log("reset - ",typeof pass)
-            console.log("reset - ",typeof a)
-      // setTodo(Object.keys(pass)[0])
+
+            var items=[]
+            for(let i=0;i<Object.keys(pass).length;i++){
+               
+               let a=Object.keys(pass)[i]
+               items.push(snapshot.val().list[a])
+               
+            }
+            console.log("reset - ",items)
+      setTodo(items)
    })
 }
 
