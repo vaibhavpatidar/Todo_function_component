@@ -16,6 +16,21 @@ const Todo = () => {
       const search = window.location.search
       name = new URLSearchParams(search).get('name');
       console.log(name)
+
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, `/users/` + name)).then((snapshot) => {
+            let pass=snapshot.val().list
+
+            var items=[]
+            for(let i=0;i<Object.keys(pass).length;i++){
+               
+               let a=Object.keys(pass)[i]
+               items.push(snapshot.val().list[a])
+               
+            }
+            console.log("Fetch - ",items)
+      setTodo(items)
+   })
    })
 
    const addTodo = (text, category) => {
